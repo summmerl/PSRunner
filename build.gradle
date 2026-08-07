@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij.platform' version '2.18.1'
+}
+
+group = 'com.example.psrunner'
+version = '0.1.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+compileJava {
+    options.release = 17          // 编译为 61 字节码，在 IDE 自带 JBR 21+ 上可直接运行
+}
+
+repositories {
+    maven {
+        name = '阿里云公共仓库'
+        url = 'https://maven.aliyun.com/repository/public'
+    }
+    maven {
+        name = '阿里云谷歌仓库'
+        url = 'https://maven.aliyun.com/repository/google'
+    }
+    mavenCentral()                                        // 解析标准 JVM 库
+    intellijPlatform {
+        defaultRepositories()                             // JetBrains 托管仓库（下载 SDK）
+    }
+}
+
+dependencies {
+    intellijPlatform {
+        intellijIdea '2026.1'                              // 2026.1 起仅发布 Ultimate（IU）；Community 已于 2025.3 停发
+                                                          // （Community 沙盒；要测 Ultimate 改 intellijIdea）
+        jetbrainsRuntime()                                // 多平台压缩包不含 JBR，需显式声明运行时供 runIde 用
+    }
+}
+
+intellijPlatform {
+    projectName = 'PowerShell Script Runner'
+
+    pluginConfiguration {
+        ideaVersion {
+            sinceBuild = '261'                            // 2026.1 起始 build 号（251/252/253→261）
+            untilBuild = null                             // 不设上限（null），或按兼容声明收紧
+        }
+    }
+}
+
+buildSearchableOptions.enabled = false   // 本插件无 Configurable 设置页，跳过耗时的搜索索引构建
+                                         // （备选：gradle.properties 设 org.jetbrains.intellij.buildFeature.buildSearchableOptions=false）
+
+runIde {
+    jvmArgs '-Xmx2g'
+}
+
+// verifyPlugin 为 2.x 标准任务：跑 Plugin Verifier 校验二进制兼容性
+// 要校验的 IDE 版本在 intellijPlatform { pluginVerification { ides { } } } 中声明（见兼容性自查清单）
