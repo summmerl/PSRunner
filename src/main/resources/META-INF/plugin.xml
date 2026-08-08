@@ -1,0 +1,24 @@
+<idea-plugin>
+    <id>com.example.psrunner</id>
+    <name>PowerShell Script Runner</name>
+    <vendor>PSRunner</vendor>
+    <description>在项目视图中右键目录即可运行用户预先配置的 PowerShell 脚本，支持占位符替换，输出显示在 Run 工具窗口。</description>
+
+    <!-- 模块模型/执行 API 均在平台内 -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="com.example.psrunner.data.PowerShellScriptSettings"/>
+        <projectService serviceImplementation="com.example.psrunner.service.ScriptExecutionService"/>
+    </extensions>
+
+    <actions>
+        <!-- 动态 ActionGroup：children 由 getChildren() 生成，无需在 XML 声明子 action -->
+        <group id="PowerShellScripts.ActionGroup"
+               class="com.example.psrunner.ui.actions.PowerShellScriptsActionGroup"
+               text="PowerShell Scripts"
+               popup="true">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
+        </group>
+    </actions>
+</idea-plugin>

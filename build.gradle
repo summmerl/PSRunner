@@ -8,12 +8,13 @@ version = '0.1.0'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)   // 2026.1 SDK 为 Java 21 字节码（65.0），编译 JDK 须 ≥21
     }
 }
 
 compileJava {
-    options.release = 17          // 编译为 61 字节码，在 IDE 自带 JBR 21+ 上可直接运行
+    options.release = 21          // 产出 65 字节码；sinceBuild=261 的 IDE 均自带 JBR≥21，可正常加载
+    options.encoding = 'UTF-8'    // 源文件含中文注释；Windows 默认 GBK 会导致「不可映射字符」编译失败
 }
 
 repositories {
