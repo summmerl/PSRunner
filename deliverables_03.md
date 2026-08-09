@@ -66,7 +66,7 @@ sequenceDiagram
 ## 交付物 2 — 模块分层与通信
 
 ```
-com.example.psrunner
+com.summerlex.psrunner
 ├── ui          // 只做两件事：拿数据上下文 + 交给 Service；绝不碰持久化
 │   ├── actions     PowerShellScriptsActionGroup / ScriptExecutionAction / ConfigureScriptsAction
 │   └── run         RunTabNamer（唯一标签名生成）
@@ -392,15 +392,15 @@ runIde {
 
 ```xml
 <idea-plugin>
-    <id>com.example.psrunner</id>
+    <id>com.summerlex.psrunner</id>
     <name>PowerShell Script Runner</name>
     <description>在项目视图中右键目录即可运行用户预先配置的 PowerShell 脚本，支持占位符替换，输出显示在 Run 工具窗口。</description>
 
     <depends>com.intellij.modules.platform</depends>   <!-- 模块模型/执行API均在平台内 -->
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.example.psrunner.data.PowerShellScriptSettings"/>
-        <projectService       serviceImplementation="com.example.psrunner.service.ScriptExecutionService"/>
+        <applicationService serviceImplementation="com.summerlex.psrunner.data.PowerShellScriptSettings"/>
+        <projectService       serviceImplementation="com.summerlex.psrunner.service.ScriptExecutionService"/>
 
         <!-- 决策 7：临时文件清扫采用「首次弹菜单时惰性清扫」，不注册 applicationStartupActivity
              （该扩展点名称在 2026.1 待验证；惰性清扫零未验证 API，启动清扫作为 post-polish 后置） -->
@@ -412,7 +412,7 @@ runIde {
     <actions>
         <!-- 注：2026.1 schema 用 <group> 而非 <actionGroup>（见实现期核实：ActionElement$ActionElementName 常量池） -->
         <group id="PowerShellScripts.ActionGroup"
-               class="com.example.psrunner.ui.actions.PowerShellScriptsActionGroup"
+               class="com.summerlex.psrunner.ui.actions.PowerShellScriptsActionGroup"
                text="PowerShell Scripts"
                popup="true">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>

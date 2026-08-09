@@ -1,7 +1,7 @@
-package com.example.psrunner.service;
+package com.summerlex.psrunner.service;
 
-import com.example.psrunner.data.ResolvedPaths;
-import com.example.psrunner.data.ScriptConfig;
+import com.summerlex.psrunner.data.ResolvedPaths;
+import com.summerlex.psrunner.data.ScriptConfig;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtilCore;
 import com.intellij.openapi.project.Project;

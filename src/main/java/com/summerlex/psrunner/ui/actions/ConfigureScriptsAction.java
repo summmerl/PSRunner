@@ -1,6 +1,6 @@
-package com.example.psrunner.ui.actions;
+package com.summerlex.psrunner.ui.actions;
 
-import com.example.psrunner.ui.dialog.ScriptConfigDialog;
+import com.summerlex.psrunner.ui.dialog.ScriptConfigDialog;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import org.jetbrains.annotations.NotNull;

@@ -1,4 +1,4 @@
-package com.example.psrunner.data;
+package com.summerlex.psrunner.data;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;

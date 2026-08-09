@@ -1,7 +1,7 @@
-package com.example.psrunner.ui.dialog;
+package com.summerlex.psrunner.ui.dialog;
 
-import com.example.psrunner.data.PowerShellScriptSettings;
-import com.example.psrunner.data.ScriptConfig;
+import com.summerlex.psrunner.data.PowerShellScriptSettings;
+import com.summerlex.psrunner.data.ScriptConfig;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.ui.components.JBScrollPane;

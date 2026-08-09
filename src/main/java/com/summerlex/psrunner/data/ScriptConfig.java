@@ -1,4 +1,4 @@
-package com.example.psrunner.data;
+package com.summerlex.psrunner.data;
 
 import com.intellij.util.xmlb.annotations.Attribute;
 import org.jetbrains.annotations.NotNull;

@@ -1,4 +1,4 @@
-package com.example.psrunner.data;
+package com.summerlex.psrunner.data;
 
 import java.time.LocalDateTime;
 

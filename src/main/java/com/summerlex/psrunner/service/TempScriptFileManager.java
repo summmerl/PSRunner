@@ -1,4 +1,4 @@
-package com.example.psrunner.service;
+package com.summerlex.psrunner.service;
 
 import org.jetbrains.annotations.NotNull;
 

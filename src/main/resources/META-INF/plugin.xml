@@ -1,21 +1,32 @@
 <idea-plugin>
-    <id>com.example.psrunner</id>
+    <id>com.summerlex.psrunner</id>
     <name>PowerShell Script Runner</name>
     <vendor>PSRunner</vendor>
-    <description>在项目视图中右键目录即可运行用户预先配置的 PowerShell 脚本，支持占位符替换，输出显示在 Run 工具窗口。</description>
+    <description><![CDATA[
+        Run PowerShell scripts directly from the Project View context menu. Right-click any directory to execute pre-configured scripts with placeholder substitution ({{SelectedDir}}, {{ProjectDir}}, {{ModuleDir}}), and view output in the Run tool window. Works on Windows with built-in PowerShell 5.1.
+    ]]></description>
+    <change-notes><![CDATA[
+0.1.0:
+- First release.
+- Run pre-configured PowerShell scripts from the Project View context menu (right-click a directory).
+- Global script configuration shared across all projects (add/edit/delete/enable).
+- Placeholder substitution: {{SelectedDir}}, {{ProjectDir}}, {{ModuleDir}}.
+- Output displayed in the Run tool window with stop button and interactive stdin.
+- UTF-8 encoding for Chinese paths and output; temp .ps1 files auto-cleaned.
+    ]]></change-notes>
 
     <!-- 模块模型/执行 API 均在平台内 -->
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.example.psrunner.data.PowerShellScriptSettings"/>
-        <projectService serviceImplementation="com.example.psrunner.service.ScriptExecutionService"/>
+        <applicationService serviceImplementation="com.summerlex.psrunner.data.PowerShellScriptSettings"/>
+        <projectService serviceImplementation="com.summerlex.psrunner.service.ScriptExecutionService"/>
     </extensions>
 
     <actions>
         <!-- 动态 ActionGroup：children 由 getChildren() 生成，无需在 XML 声明子 action -->
         <group id="PowerShellScripts.ActionGroup"
-               class="com.example.psrunner.ui.actions.PowerShellScriptsActionGroup"
+               class="com.summerlex.psrunner.ui.actions.PowerShellScriptsActionGroup"
                text="PowerShell Scripts"
                popup="true">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>

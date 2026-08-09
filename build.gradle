@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.intellij.platform' version '2.18.1'
 }
 
-group = 'com.example.psrunner'
+group = 'com.summerlex.psrunner'
 version = '0.1.0'
 
 java {
@@ -46,7 +46,7 @@ intellijPlatform {
     pluginConfiguration {
         ideaVersion {
             sinceBuild = '261'                            // 2026.1 起始 build 号（251/252/253→261）
-            untilBuild = null                             // 不设上限（null），或按兼容声明收紧
+            untilBuild = '261.*'                          // 兼容上限：仅 2026.1 系列（仅实测过 2026.1；验证更多版本后再放宽）
         }
     }
 }

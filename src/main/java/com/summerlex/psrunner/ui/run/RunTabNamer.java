@@ -1,4 +1,4 @@
-package com.example.psrunner.ui.run;
+package com.summerlex.psrunner.ui.run;
 
 import com.intellij.execution.ui.RunContentManager;
 import com.intellij.openapi.project.Project;
@@ -30,7 +30,7 @@ public final class RunTabNamer {
     }
 
     private static boolean hasContent(@NotNull RunContentManager manager, @NotNull String name) {
-        return manager.getRunContentDescriptors().stream()
+        return manager.getAllDescriptors().stream()
                 .anyMatch(d -> name.equals(d.getDisplayName()));
     }
 }

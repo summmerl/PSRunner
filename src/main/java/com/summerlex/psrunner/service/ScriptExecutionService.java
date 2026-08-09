@@ -1,8 +1,8 @@
-package com.example.psrunner.service;
+package com.summerlex.psrunner.service;
 
-import com.example.psrunner.data.ResolvedPaths;
-import com.example.psrunner.data.ScriptConfig;
-import com.example.psrunner.ui.run.RunTabNamer;
+import com.summerlex.psrunner.data.ResolvedPaths;
+import com.summerlex.psrunner.data.ScriptConfig;
+import com.summerlex.psrunner.ui.run.RunTabNamer;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.GeneralCommandLine;
 import com.intellij.execution.executors.DefaultRunExecutor;
@@ -58,7 +58,7 @@ public final class ScriptExecutionService {
         // ── 1. 占位符强制解析（决策 4 / 4.1）：ReadAction 内，PCE 抛出点 ① ──
         ResolvedPaths paths;
         try {
-            paths = ReadAction.compute(() -> {
+            paths = ReadAction.computeCancellable(() -> {
                 try {
                     return new PlaceholderResolver().resolve(project, targetDir, script);
                 } catch (PlaceholderResolutionException e) {
@@ -66,7 +66,7 @@ public final class ScriptExecutionService {
                 }
             });
         } catch (ProcessCanceledException e) {
-            // 决策异常地图 ①：项目关闭等放弃场景，静默终止
+            // 决策异常地图 ①：项目关闭等放弃场景，静默终止（CannotReadException 是其子类，一并覆盖）
             return;
         } catch (RuntimeException e) {
             if (e.getCause() instanceof PlaceholderResolutionException pre) {
@@ -103,7 +103,7 @@ public final class ScriptExecutionService {
         String scriptBody = paths.command();
         ApplicationManager.getApplication().invokeLater(
                 () -> showInRunWindow(script, cmd, targetDir.getPath(), startNanos, tempFile, scriptBody),
-                ModalityState.NON_MODAL);
+                ModalityState.defaultModalityState());
     }
 
     private void showInRunWindow(@NotNull ScriptConfig script,

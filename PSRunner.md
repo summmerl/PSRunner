@@ -152,7 +152,7 @@
 ### 2. 模块分层与通信
 
 ```
-com.example.psrunner
+com.summerlex.psrunner
 ├── ui          // 只做两件事：拿数据上下文 + 交给 Service；绝不碰持久化
 │   ├── actions     PowerShellScriptsActionGroup / ScriptExecutionAction / ConfigureScriptsAction
 │   └── run         RunTabNamer（唯一标签名生成）

@@ -1,6 +1,6 @@
-package com.example.psrunner.ui.dialog;
+package com.summerlex.psrunner.ui.dialog;
 
-import com.example.psrunner.data.ScriptConfig;
+import com.summerlex.psrunner.data.ScriptConfig;
 import com.intellij.openapi.ui.DialogWrapper;
 import org.jetbrains.annotations.Nullable;
 

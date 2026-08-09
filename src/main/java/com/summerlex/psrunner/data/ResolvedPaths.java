@@ -1,4 +1,4 @@
-package com.example.psrunner.data;
+package com.summerlex.psrunner.data;
 
 /**
  * 运行期解析结果 DTO：command 为占位符替换后的最终脚本内容，

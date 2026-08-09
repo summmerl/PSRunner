@@ -1,7 +1,7 @@
-package com.example.psrunner.ui.actions;
+package com.summerlex.psrunner.ui.actions;
 
-import com.example.psrunner.data.ScriptConfig;
-import com.example.psrunner.service.ScriptExecutionService;
+import com.summerlex.psrunner.data.ScriptConfig;
+import com.summerlex.psrunner.service.ScriptExecutionService;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
