@@ -100,8 +100,9 @@ public final class ScriptExecutionService {
         cmd.withWorkDirectory(targetDir.getPath());        // 工作目录 = 选中目录
 
         // ── 4. EDT 接线 Run 窗口 ──
+        String scriptBody = paths.command();
         ApplicationManager.getApplication().invokeLater(
-                () -> showInRunWindow(script, cmd, targetDir.getPath(), startNanos, tempFile),
+                () -> showInRunWindow(script, cmd, targetDir.getPath(), startNanos, tempFile, scriptBody),
                 ModalityState.NON_MODAL);
     }
 
@@ -109,7 +110,8 @@ public final class ScriptExecutionService {
                                  @NotNull GeneralCommandLine cmd,
                                  @NotNull String targetDirPath,
                                  long startNanos,
-                                 @NotNull Path tempFile) {
+                                 @NotNull Path tempFile,
+                                 @NotNull String scriptBody) {
         KillableProcessHandler handler;
         try {
             handler = new KillableProcessHandler(cmd);
@@ -150,6 +152,11 @@ public final class ScriptExecutionService {
                 TempScriptFileManager.delete(tempFile);
             }
         });
+
+        // 打印实际执行的脚本主体（占位符替换后），便于用户核对执行内容
+        console.print("── 执行的脚本 ──\n", ConsoleViewContentType.SYSTEM_OUTPUT);
+        console.print(scriptBody + "\n", ConsoleViewContentType.NORMAL_OUTPUT);
+        console.print("────────────────\n", ConsoleViewContentType.SYSTEM_OUTPUT);
 
         handler.startNotify();
     }
