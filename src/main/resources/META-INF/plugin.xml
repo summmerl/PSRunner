@@ -1,7 +1,9 @@
 <idea-plugin>
     <id>com.summerlex.psrunner</id>
+    <version>0.1.1</version>
     <name>PowerShell Script Runner</name>
     <vendor>PSRunner</vendor>
+    <idea-version since-build="261"/>
     <description><![CDATA[
         Run PowerShell scripts directly from the Project View context menu. Right-click any directory to execute pre-configured scripts with placeholder substitution ({{SelectedDir}}, {{ProjectDir}}, {{ModuleDir}}), and view output in the Run tool window. Works on Windows with built-in PowerShell 5.1.
     ]]></description>
