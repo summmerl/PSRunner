@@ -30,9 +30,15 @@ public final class PlaceholderResolver {
         if (projectDir == null) {
             throw new PlaceholderResolutionException("无法解析 {{ProjectDir}}：项目根路径为空。");
         }
-        String moduleDir = findModuleContentRoot(project, targetDir);
-
         String command = script.getCommand();
+
+        // ModuleDir 惰性解析：仅当脚本真正引用时才按模块结构解析，
+        // 否则跳过——选中目录不属于任何模块时不应拦截无关脚本的执行。
+        String moduleDir = null;
+        if (command.contains(MODULE_DIR)) {
+            moduleDir = findModuleContentRoot(project, targetDir);
+        }
+
         command = command.replace(SELECTED_DIR, quote(selectedDir));
         command = command.replace(PROJECT_DIR, quote(projectDir));
         if (moduleDir != null) {
